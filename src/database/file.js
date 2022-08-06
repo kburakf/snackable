@@ -1,3 +1,19 @@
+const fileProjection = {
+  _id: 0,
+  fileId: 1,
+  fileSegmentId: 1,
+  fileName: 1,
+  mp3Path: 1,
+  segmentText: 1,
+  originalFilepath: 1,
+  seriesTitle: 1,
+  startTime: 1,
+  endTime: 1,
+  processingStatus: 1,
+  createdAt: 1,
+  updatedAt: 1,
+};
+
 module.exports = class FileDatabase {
   constructor({ FileModel }) {
     this.FileModel = FileModel;
@@ -18,7 +34,7 @@ module.exports = class FileDatabase {
   async getFileByFileId({ fileId }) {
     const { FileModel } = this;
 
-    return FileModel.findOne({ fileId })
+    return FileModel.findOne({ fileId }, fileProjection)
       .lean()
       .exec();
   }
@@ -26,38 +42,23 @@ module.exports = class FileDatabase {
   async getOrganizationFilesByToken({ organizationId }) {
     const { FileModel } = this;
 
-    return FileModel.find(
-      { organizationId },
-      {
-        _id: 0,
-        fileId: 1,
-        fileSegmentId: 1,
-        fileName: 1,
-        mp3Path: 1,
-        segmentText: 1,
-        originalFilepath: 1,
-        seriesTitle: 1,
-        startTime: 1,
-        endTime: 1,
-        processingStatus: 1,
-        createdAt: 1,
-        updatedAt: 1,
-      },
-    )
+    return FileModel.find({ organizationId }, fileProjection)
       .lean()
       .exec();
   }
 
-  async getFilesBySeriesSchema({ seriesTitle }) {
+  async getFilesBySeriesTitle({ seriesTitle }) {
     const { FileModel } = this;
 
-    return FileModel.find({ seriesTitle: { $regex: seriesTitle } });
+    return FileModel.find({ seriesTitle: { $regex: seriesTitle } }, fileProjection)
+      .lean()
+      .exec();
   }
 
   async getFiles({ limit, offset }) {
     const { FileModel } = this;
 
-    return FileModel.find()
+    return FileModel.find({}, fileProjection)
       .skip(offset)
       .limit(limit)
       .lean()

@@ -44,7 +44,7 @@ module.exports = class FileService {
 
     logger.debug('[FileService] getFileByFileId', { fileId });
 
-    let file = await FileDatabase.getFileByFileId({ fileId });
+    const file = await FileDatabase.getFileByFileId({ fileId });
 
     if (!file) {
       throw new FileNotFound();
@@ -57,8 +57,6 @@ module.exports = class FileService {
     else if (FileLogic.isFileStatusFailed({ file })) {
       throw new FileStatusIsFailed();
     }
-
-    file = FileFormatter.prepareFileResponse({ file });
 
     return file;
   }
@@ -77,12 +75,12 @@ module.exports = class FileService {
     return files;
   }
 
-  async getFilesBySeriesSchema({ seriesTitle }) {
+  async getFilesBySeriesTitle({ seriesTitle }) {
     const { FileDatabase } = this;
 
-    logger.debug('[FileService] getFilesBySeriesSchema', { seriesTitle });
+    logger.debug('[FileService] getFilesBySeriesTitle', { seriesTitle });
 
-    const files = await FileDatabase.getFilesBySeriesSchema({ seriesTitle });
+    const files = await FileDatabase.getFilesBySeriesTitle({ seriesTitle });
 
     if (!files.length) {
       throw new FileNotFound();

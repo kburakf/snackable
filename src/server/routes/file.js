@@ -32,8 +32,8 @@ const routes = [
   {
     method: 'POST',
     url: '/api/v1/files/series',
-    schema: FileSchema.getFilesBySeriesSchema,
-    handler: 'FileController.getFilesBySeriesSchema',
+    schema: FileSchema.getFilesBySeriesTitleSchema,
+    handler: 'FileController.getFilesBySeriesTitle',
   },
   {
     method: 'POST',

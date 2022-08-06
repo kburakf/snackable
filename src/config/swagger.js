@@ -1,13 +1,13 @@
 const { server: { host }, env } = require('../config/environments/default');
 
-const httpProtocol = env === 'prod' ? 'https' : 'http';
+const schema = env === 'prod' ? 'https' : 'http';
 
 exports.options = {
   routePrefix: '/documentation',
   exposeRoute: true,
   swagger: {
     info: {
-      title: 'Snackable API',
+      title: 'Snackable AI API',
       description: 'Building a blazing fast REST API with Node.js, MongoDB, Fastify and Swagger',
       version: '1.0.0',
     },
@@ -16,7 +16,7 @@ exports.options = {
       description: 'Find more info here',
     },
     host: `${host}`,
-    schemes: [httpProtocol],
+    schemes: [schema],
     consumes: ['application/json'],
     produces: ['application/json'],
   },

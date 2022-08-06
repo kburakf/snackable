@@ -18,7 +18,7 @@ module.exports = class FileLogic {
         seriesTitle: `Series Title ${i}`,
         startTime: new Date(),
         endTime: new Date(),
-        processingStatus: PROCESSING_STATUS[randomProcess],
+        processingStatus: Object.values(PROCESSING_STATUS)[randomProcess],
       });
     }
 
@@ -41,7 +41,7 @@ module.exports = class FileLogic {
       seriesTitle,
       startTime: new Date(),
       endTime: new Date(),
-      processingStatus: PROCESSING_STATUS[randomProcess],
+      processingStatus: Object.values(PROCESSING_STATUS)[randomProcess],
     };
   }
 

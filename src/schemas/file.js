@@ -53,7 +53,7 @@ module.exports = {
       required: ['token'],
     },
   },
-  getFilesBySeriesSchema: {
+  getFilesBySeriesTitleSchema: {
     tags,
     summary: 'Get files by series title.',
     body: {

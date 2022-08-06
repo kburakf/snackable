@@ -31,10 +31,10 @@ module.exports = class FileController {
     return FileService.getOrganizationFilesByToken({ organizationId });
   }
 
-  async getFilesBySeriesSchema(request) {
+  async getFilesBySeriesTitle(request) {
     const { FileService } = this;
     const { seriesTitle } = request.body;
-    return FileService.getFilesBySeriesSchema({ seriesTitle });
+    return FileService.getFilesBySeriesTitle({ seriesTitle });
   }
 
   async getFiles(request) {
