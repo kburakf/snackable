@@ -17,6 +17,9 @@ $ docker-compose up -d
 
 ## API Documentation URL
 ```bash
+# Production URL
+https://snackable-ai.herokuapp.com/documentation
+
 # Localhost URL
 http://localhost:3000/documentation
 ```
